@@ -1,0 +1,5 @@
+node_modules
+.templates
+.next
+template.config.js
+.vscode
