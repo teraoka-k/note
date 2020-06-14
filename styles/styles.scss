@@ -1,0 +1,14 @@
+$font: 'Times New Roman',
+Times,
+serif;
+
+body {
+    font-family: $font;
+}
+
+button {
+    font-family: $font;
+    background-color: transparent;
+    border: none;
+    outline: none;
+}

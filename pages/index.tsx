@@ -16,7 +16,7 @@ export default function index() {
     <div id="app" style={center}>
       {isHomeMode() ? (
         <div>
-          <div
+          <button
             onClick={() => {
               new Audio('sounds/ui1.mp3').play()
               setWriteMode()
@@ -24,8 +24,8 @@ export default function index() {
             }}
           >
             Write
-          </div>
-          <div
+          </button>
+          <button
             onClick={() => {
               new Audio('sounds/ui2.mp3').play()
               setReadMode()
@@ -33,7 +33,7 @@ export default function index() {
             }}
           >
             Read
-          </div>
+          </button>
         </div>
       ) : null}
       <div>{isWriteMode() ? <MdEditor></MdEditor> : null}</div>
