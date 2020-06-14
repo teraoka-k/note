@@ -1,8 +1,10 @@
-$font: 'Times New Roman',
+$font: Georgia,
+'Times New Roman',
 Times,
 serif;
 
-body {
+body,
+textarea {
     font-family: $font;
 }
 

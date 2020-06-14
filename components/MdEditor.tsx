@@ -2,10 +2,11 @@ import { useState, useEffect, useRef } from 'react'
 import ReactMarkdown from 'react-markdown'
 import { cacheData, getCache } from '../cache/cache'
 import { center } from '../styles/styles'
-import { appMode, AppMode, setHomeMode } from '../states/appMode'
+import { playCloseSound, playEnterSoune } from '../util/sounds'
 
 export interface MdEditorProps {
   template?: string
+  setHomeMode: () => void
 }
 
 enum Mode {
@@ -23,7 +24,6 @@ export const MdEditor = (props: MdEditorProps) => {
       '# Markdown Editor\n\nwrite a note here'
   )
   const [mode, setMode] = useState(Mode.IN)
-  const [applicationMode, setAppmode] = useState(appMode)
 
   // reference to child components
   const inputElement = useRef(null)
@@ -62,15 +62,22 @@ export const MdEditor = (props: MdEditorProps) => {
         value={src}
       ></textarea>
       <div style={center}>
-        <div
+        <button
           onClick={() => {
-            setHomeMode()
-            setAppmode(AppMode.home)
+            playEnterSoune()
+            props.setHomeMode()
           }}
         >
           Save
-        </div>
-        <div>Back</div>
+        </button>
+        <button
+          onClick={() => {
+            playCloseSound()
+            props.setHomeMode()
+          }}
+        >
+          Back
+        </button>
       </div>
       <div
         style={{

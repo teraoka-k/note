@@ -1,42 +1,61 @@
 import { MdEditor } from '../components/MdEditor'
 import { center } from '../styles/styles'
-import {
-  isHomeMode,
-  setWriteMode,
-  setReadMode,
-  isWriteMode,
-  appMode,
-  AppMode,
-} from '../states/appMode'
 import { useState } from 'react'
+import { playOpenSound } from '../util/sounds'
+
+enum AppMode {
+  home,
+  write,
+  read,
+}
 
 export default function index() {
-  const [mode, setMode] = useState(appMode)
+  const [mode, setMode] = useState(AppMode.home)
+
   return (
     <div id="app" style={center}>
       {isHomeMode() ? (
         <div>
           <button
             onClick={() => {
-              new Audio('sounds/ui1.mp3').play()
+              playOpenSound()
               setWriteMode()
-              setMode(AppMode.write)
             }}
           >
             Write
           </button>
           <button
             onClick={() => {
-              new Audio('sounds/ui2.mp3').play()
+              playOpenSound()
               setReadMode()
-              setMode(AppMode.read)
             }}
           >
             Read
           </button>
         </div>
       ) : null}
-      <div>{isWriteMode() ? <MdEditor></MdEditor> : null}</div>
+      <div>
+        {isWriteMode() ? <MdEditor setHomeMode={setHomeMode}></MdEditor> : null}
+      </div>
     </div>
   )
+
+  function isHomeMode(): boolean {
+    return mode == AppMode.home
+  }
+  function isWriteMode(): boolean {
+    return mode == AppMode.write
+  }
+  function isReadMode(): boolean {
+    return mode == AppMode.read
+  }
+  function setHomeMode(): void {
+    setMode(AppMode.home)
+  }
+  function setWriteMode(): void {
+    setMode(AppMode.write)
+  }
+  function setReadMode(): void {
+    setMode(AppMode.read)
+  }
 }
