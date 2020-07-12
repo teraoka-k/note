@@ -4,9 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "next",
+    "dev": "NODE_OPTIONS='--inspect' next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "db": "docker run --name mongodb -p 27017:27017 -v `pwd`/db:/data/db -d mongo",
+    "db:kill": "docker rm -f mongodb"
   },
   "author": "",
   "license": "ISC",
@@ -17,12 +19,16 @@
     "typescript": "^3.9.5"
   },
   "dependencies": {
+    "@types/mongodb": "^3.5.25",
     "@zeit/next-sass": "^1.0.1",
     "file-loader": "^6.0.0",
+    "mongodb": "^3.5.9",
     "next": "^9.4.4",
+    "next-connect": "^0.8.1",
     "node-sass": "^4.14.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-markdown": "^4.3.1"
+    "react-markdown": "^4.3.1",
+    "swiper": "^6.0.1"
   }
 }
