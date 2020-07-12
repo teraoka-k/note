@@ -2,9 +2,9 @@ import { useState, useEffect, useRef } from 'react'
 import ReactMarkdown from 'react-markdown'
 import { cacheData, getCache } from '../cache/cache'
 import { center } from '../styles/styles'
-import { playCloseSound, playEnterSoune } from '../util/sounds'
+import { playCloseSound, playEnterSound } from '../util/sounds'
 
-export interface MdEditorProps {
+interface MdEditorProps {
   template?: string
   setHomeMode: () => void
 }
@@ -64,7 +64,11 @@ export const MdEditor = (props: MdEditorProps) => {
       <div style={center}>
         <button
           onClick={() => {
-            playEnterSoune()
+            playEnterSound()
+            fetch('/api/write', {
+              method: 'post',
+              body: JSON.stringify({ text: src }),
+            })
             props.setHomeMode()
           }}
         >
