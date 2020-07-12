@@ -13,6 +13,7 @@ import {
 } from '../logic/appMode'
 import { WriteButton } from '../components/writeButton'
 import { ReadMode } from '../components/readMode'
+import { ReadButton } from '../components/readButton'
 export default () => {
   useAppMode()
   const [notes, setNotes] = useState([] as Note[])
@@ -31,20 +32,7 @@ export default () => {
       {isHomeMode() ? (
         <div>
           <WriteButton></WriteButton>
-          <button
-            onClick={() => {
-              playOpenSound()
-              async function fetchNotes() {
-                const res = await fetch('api/notes')
-                const data = await res.json()
-                setNotes(data)
-              }
-              fetchNotes()
-              setReadMode()
-            }}
-          >
-            Read
-          </button>
+          <ReadButton setNotes={setNotes}></ReadButton>
         </div>
       ) : null}
       {isWriteMode() ? <MdEditor setHomeMode={setHomeMode}></MdEditor> : null}
