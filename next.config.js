@@ -8,5 +8,5 @@ module.exports = withSass({
     })
     return config
   },
-  pageExtensions: ['md', 'tsx'],
+  pageExtensions: ['md', 'tsx', 'ts'],
 })
