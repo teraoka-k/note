@@ -15,6 +15,6 @@ export function playCloseSound(): void {
   loadSound('close').play()
 }
 
-export function playEnterSoune(): void {
+export function playEnterSound(): void {
   loadSound('enter').play()
 }
