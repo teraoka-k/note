@@ -6,6 +6,6 @@ interface Props {
   note: Note
 }
 
-export default (props: Props) => {
+export const NotePreview = (props: Props) => {
   return <ReactMarkdown source={props.note.text.substr(0, 50)}></ReactMarkdown>
 }

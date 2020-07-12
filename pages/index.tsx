@@ -2,18 +2,17 @@ import { MdEditor } from '../components/mdEditor'
 import { center } from '../styles/styles'
 import { useState, useEffect } from 'react'
 import { playOpenSound } from '../util/sounds'
-import ReadMode from '../components/readMode'
 import { Note } from '../logic/colllections/note'
 import {
   isHomeMode,
-  setWriteMode,
   setReadMode,
   isWriteMode,
   setHomeMode,
   isReadMode,
   useAppMode,
 } from '../logic/appMode'
-
+import { WriteButton } from '../components/writeButton'
+import { ReadMode } from '../components/readMode'
 export default () => {
   useAppMode()
   const [notes, setNotes] = useState([] as Note[])
@@ -31,14 +30,7 @@ export default () => {
     <div id="app" style={center}>
       {isHomeMode() ? (
         <div>
-          <button
-            onClick={() => {
-              playOpenSound()
-              setWriteMode()
-            }}
-          >
-            Write
-          </button>
+          <WriteButton></WriteButton>
           <button
             onClick={() => {
               playOpenSound()
