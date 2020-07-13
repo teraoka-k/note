@@ -3,25 +3,19 @@ import ReactMarkdown from 'react-markdown'
 import { cacheData, getCache } from '../cache/cache'
 import { center } from '../styles/styles'
 import { playCloseSound, playEnterSound } from '../util/sounds'
-
-interface MdEditorProps {
-  template?: string
-  setHomeMode: () => void
-}
+import { setHomeMode } from '../states/appMode'
 
 enum Mode {
   IN,
   OUT,
 }
 
-export const MdEditor = (props: MdEditorProps) => {
+export const Writer = () => {
   // states
   const [height, setHeight] = useState(0)
   const [width, setWidth] = useState(0)
   const [src, setSrc] = useState(
-    getCache('writing') ||
-      props.template ||
-      '# Markdown Editor\n\nwrite a note here'
+    getCache('writing') || '# Markdown Editor\n\nwrite a note here'
   )
   const [mode, setMode] = useState(Mode.IN)
 
@@ -65,11 +59,11 @@ export const MdEditor = (props: MdEditorProps) => {
         <button
           onClick={() => {
             playEnterSound()
-            fetch('/api/write', {
+            fetch('/api/notes', {
               method: 'post',
               body: JSON.stringify({ text: src }),
             })
-            props.setHomeMode()
+            setHomeMode()
           }}
         >
           Save
@@ -77,7 +71,7 @@ export const MdEditor = (props: MdEditorProps) => {
         <button
           onClick={() => {
             playCloseSound()
-            props.setHomeMode()
+            setHomeMode()
           }}
         >
           Back
