@@ -1,16 +1,17 @@
-$font: Georgia,
-'Times New Roman',
-Times,
-serif;
+$font: Georgia, 'Times New Roman', Times, serif;
 
 body,
 textarea {
-    font-family: $font;
+  font-family: $font;
 }
 
 button {
-    font-family: $font;
-    background-color: transparent;
-    border: none;
-    outline: none;
+  font-family: $font;
+  background-color: transparent;
+  border: none;
+  outline: none;
+}
+
+.swiper-container {
+  width: 70%;
 }
