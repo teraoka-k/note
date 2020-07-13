@@ -18,7 +18,7 @@ export const Reader = () => {
         </div>
       ) : (
         <div style={horizontallyCenter}>
-          <WriteButton></WriteButton>
+          <WriteButton rewrites={true}></WriteButton>
           <DeleteButton></DeleteButton>
           <BackButton></BackButton>
         </div>

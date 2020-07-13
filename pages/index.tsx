@@ -3,6 +3,7 @@ import {
   isWriteMode,
   isReadMode,
   useAppMode,
+  isRewriteMode,
 } from '../states/appMode'
 import { Reader } from '../components/reader'
 import { Writer } from '../components/writer'
@@ -16,7 +17,7 @@ export default () => {
   return (
     <div id="app">
       {isHomeMode() ? <Home></Home> : null}
-      {isWriteMode() ? <Writer></Writer> : null}
+      {isWriteMode() || isRewriteMode() ? <Writer></Writer> : null}
       {isReadMode() ? <Reader></Reader> : null}
     </div>
   )

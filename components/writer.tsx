@@ -5,6 +5,8 @@ import { splitVertical, middle } from '../styles/styles'
 import { windowHeight } from '../states/windowSize'
 import { BackButton } from './backButton'
 import { SaveButton } from './saveButton'
+import { isWriteMode, isRewriteMode } from '../states/appMode'
+import { viewingNote } from '../states/viewingNote'
 
 enum Mode {
   IN,
@@ -14,7 +16,9 @@ enum Mode {
 export const Writer = () => {
   // states
   const [src, setSrc] = useState(
-    getCache('writing') || '# Markdown Editor\n\nwrite a note here'
+    isWriteMode()
+      ? getCache('writing') || '# Markdown Editor\n\nwrite a note here'
+      : viewingNote.text
   )
   const [mode, setMode] = useState(Mode.IN)
 

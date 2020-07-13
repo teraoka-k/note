@@ -5,6 +5,7 @@ enum AppMode {
   home,
   write,
   read,
+  rewrite,
 }
 
 let mode: AppMode
@@ -23,6 +24,9 @@ export function isWriteMode(): boolean {
 export function isReadMode(): boolean {
   return mode == AppMode.read
 }
+export function isRewriteMode(): boolean {
+  return mode == AppMode.rewrite
+}
 export function setHomeMode(): void {
   cahngeMode(AppMode.home)
 }
@@ -31,6 +35,9 @@ export function setWriteMode(): void {
 }
 export function setReadMode(): void {
   cahngeMode(AppMode.read)
+}
+export function setRewriteMode(): void {
+  cahngeMode(AppMode.rewrite)
 }
 
 /**
