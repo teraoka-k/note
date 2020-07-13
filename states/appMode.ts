@@ -1,4 +1,5 @@
 import { useState, Dispatch, SetStateAction } from 'react'
+import { read } from 'fs'
 
 enum AppMode {
   home,
@@ -23,11 +24,25 @@ export function isReadMode(): boolean {
   return mode == AppMode.read
 }
 export function setHomeMode(): void {
-  setMode(AppMode.home)
+  cahngeMode(AppMode.home)
 }
 export function setWriteMode(): void {
-  setMode(AppMode.write)
+  cahngeMode(AppMode.write)
 }
 export function setReadMode(): void {
-  setMode(AppMode.read)
+  cahngeMode(AppMode.read)
 }
+
+/**
+ * @private
+ */
+function cahngeMode(newMode: AppMode): void {
+  histories.push(mode)
+  setMode(newMode)
+}
+
+export function backMode(): void {
+  setMode(histories.pop())
+}
+
+let histories: AppMode[] = []
