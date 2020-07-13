@@ -59,7 +59,7 @@ export const Writer = () => {
         <button
           onClick={() => {
             playEnterSound()
-            fetch('/api/notes', {
+            fetch('/api/note', {
               method: 'post',
               body: JSON.stringify({ text: src }),
             })
