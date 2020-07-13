@@ -1,9 +1,9 @@
 import { WriteButton } from './writeButton'
 import { ReadButton } from './readButton'
-import { center } from '../styles/styles'
+import { middle } from '../styles/styles'
 
 export const Home = () => (
-  <div style={center}>
+  <div style={middle}>
     <WriteButton></WriteButton>
     <ReadButton></ReadButton>
   </div>

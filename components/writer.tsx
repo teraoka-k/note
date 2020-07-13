@@ -1,8 +1,8 @@
 import { useState, useRef } from 'react'
 import ReactMarkdown from 'react-markdown'
 import { cacheData, getCache } from '../cache/cache'
-import { center } from '../styles/styles'
-import { windowHeight, windowWidth } from '../states/windowSize'
+import { splitVertical, middle } from '../styles/styles'
+import { windowHeight } from '../states/windowSize'
 import { BackButton } from './backButton'
 import { SaveButton } from './saveButton'
 
@@ -25,7 +25,7 @@ export const Writer = () => {
   return (
     <div>
       <textarea
-        style={{ height: `${windowHeight}px`, width: `${windowWidth}px` }}
+        style={Object.assign({ margin: '1% 2%' }, splitVertical(0, 40))}
         onChange={(e) => {
           setSrc(e.target.value)
           cacheData('writing', src)
@@ -43,16 +43,15 @@ export const Writer = () => {
         ref={inputElement}
         value={src}
       ></textarea>
-      <div style={center}>
+      <div style={middle}>
         <SaveButton src={src}></SaveButton>
         <BackButton></BackButton>
       </div>
       <div
-        style={{
-          height: `${windowHeight}px`,
-          width: `${windowWidth}px`,
-          overflow: 'auto',
-        }}
+        style={Object.assign(
+          { overflow: 'auto', margin: '1% 2%' },
+          splitVertical(50, 100)
+        )}
         onMouseEnter={() => setMode(Mode.OUT)}
         onTouchStart={() => setMode(Mode.OUT)}
         onScroll={(e) => {
