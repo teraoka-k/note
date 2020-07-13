@@ -14,6 +14,9 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     case 'PUT':
       break
     case 'DELETE':
+      const id = JSON.parse(req.body)
+      await Note.delete(id)
+      res.status(200).json({ message: 'ok' })
       break
   }
 }

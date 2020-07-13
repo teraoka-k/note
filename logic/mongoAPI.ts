@@ -23,7 +23,21 @@ export async function findDocuments(
   let client: MongoClient
   try {
     client = await MongoClient.connect(URL, { useNewUrlParser: true })
-    return await client.db(NAME).collection(collectionName).find({}).toArray()
+    return await client
+      .db(NAME)
+      .collection(collectionName)
+      .find(filter)
+      .toArray()
+  } finally {
+    client.close()
+  }
+}
+
+export async function deleteDocument(collectionName: string, filter: object) {
+  let client: MongoClient
+  try {
+    client = await MongoClient.connect(URL, { useNewUrlParser: true })
+    return await client.db(NAME).collection(collectionName).deleteOne(filter)
   } finally {
     client.close()
   }
