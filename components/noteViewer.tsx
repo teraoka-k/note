@@ -1,24 +1,11 @@
-import { WriteButton } from './writeButton'
-import { BackButton } from './backButton'
 import ReactMarkdown from 'react-markdown'
-import { DeleteButton } from './deleteButton'
 import { viewingNote } from '../states/viewingNote'
+import { horizontallyCenter } from '../styles/styles'
 
 export const NoteViewer = () => (
-  <div
-    style={{
-      position: 'absolute',
-      left: '50%',
-      transform: 'translate(-50%, 0%)',
-    }}
-  >
+  <div style={horizontallyCenter}>
     {viewingNote ? (
-      <div>
-        <WriteButton></WriteButton>
-        <DeleteButton></DeleteButton>
-        <BackButton></BackButton>
-        <ReactMarkdown source={viewingNote.text}></ReactMarkdown>
-      </div>
+      <ReactMarkdown source={viewingNote.text}></ReactMarkdown>
     ) : null}
   </div>
 )

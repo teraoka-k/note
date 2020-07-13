@@ -6,3 +6,7 @@ export const center: CSSProperties = {
   top: '50%',
   transform: 'translate(-50%, -50%)',
 }
+export const horizontallyCenter: CSSProperties = {
+  display: 'table',
+  margin: '0 auto',
+}
