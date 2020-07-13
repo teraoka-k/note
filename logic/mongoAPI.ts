@@ -42,3 +42,20 @@ export async function deleteDocument(collectionName: string, filter: object) {
     client.close()
   }
 }
+
+export async function updateDocument(
+  collectionName: string,
+  filter: object,
+  newDocument: object
+) {
+  let client: MongoClient
+  try {
+    client = await MongoClient.connect(URL, { useNewUrlParser: true })
+    return await client
+      .db(NAME)
+      .collection(collectionName)
+      .updateOne(filter, { $set: newDocument })
+  } finally {
+    client.close()
+  }
+}

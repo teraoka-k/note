@@ -1,4 +1,9 @@
-import { findDocuments, insertDocument, deleteDocument } from '../mongoAPI'
+import {
+  findDocuments,
+  insertDocument,
+  deleteDocument,
+  updateDocument,
+} from '../mongoAPI'
 import { ObjectID } from 'mongodb'
 
 const collectionName = 'note'
@@ -22,5 +27,8 @@ export class Note {
   }
   static async delete(id: string): Promise<void> {
     await deleteDocument(collectionName, { _id: new ObjectID(id) })
+  }
+  static async update(id: string, text: string): Promise<void> {
+    await updateDocument(collectionName, { _id: new ObjectID(id) }, { text })
   }
 }

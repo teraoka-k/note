@@ -12,6 +12,9 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       res.status(200).json({ message: 'ok' })
       break
     case 'PUT':
+      const body = JSON.parse(req.body)
+      await Note.update(body.id, body.text)
+      res.status(200).json({ message: 'ok' })
       break
     case 'DELETE':
       const id = JSON.parse(req.body)
