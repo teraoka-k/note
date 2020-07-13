@@ -7,6 +7,7 @@ import { notes, useNotes } from '../states/notes'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import SwiperCore, { Pagination, Scrollbar } from 'swiper'
 import { setViewingNote } from '../states/viewingNote'
+import { windowWidth } from '../states/windowSize'
 
 SwiperCore.use([Pagination, Scrollbar])
 
@@ -14,11 +15,10 @@ export const NotePreviewer = () => {
   useNotes()
   return (
     <Swiper
-      spaceBetween={50}
-      slidesPerView={5}
-      pagination={{ clickable: true }}
+      spaceBetween={windowWidth / 100}
+      slidesPerView={3}
       scrollbar={{ draggable: true }}
-      autoHeight={true}
+      freeMode={true}
     >
       {notes.map((note) => (
         <SwiperSlide key={note._id}>
