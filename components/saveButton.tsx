@@ -7,7 +7,7 @@ export const SaveButton = (props: { src: string }) => (
       playEnterSound()
       fetch('/api/note', {
         method: 'post',
-        body: JSON.stringify({ text: src }),
+        body: JSON.stringify({ text: props.src }),
       })
       setHomeMode()
     }}
