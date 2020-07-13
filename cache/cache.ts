@@ -7,3 +7,7 @@ export function cacheData(key: string, value: any) {
 export function getCache(key: string): any {
   return cache[key]
 }
+
+export function clearCache(key: string): void {
+  delete cache[key]
+}
