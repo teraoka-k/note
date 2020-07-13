@@ -1,5 +1,5 @@
 import { playOpenSound } from '../util/sounds'
-import { setWriteMode } from '../logic/appMode'
+import { setWriteMode } from '../states/appMode'
 
 export const WriteButton = () => (
   <button
