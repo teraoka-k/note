@@ -1,18 +1,17 @@
-import { useState } from 'react'
-import { Note } from '../logic/colllections/note'
 import { BackButton } from './backButton'
 import { center } from '../styles/styles'
 import { NoteViewer } from './noteViewer'
 import { NotePreviewer } from './notePreviewer'
+import { useViewingNote, viewingNote } from '../states/viewingNote'
 
 export const Reader = () => {
-  const [viewingNote, setViewingNote] = useState(null as Note)
+  useViewingNote()
 
   return (
     <div>
-      <NotePreviewer setViewingNote={setViewingNote}></NotePreviewer>
+      <NotePreviewer></NotePreviewer>
       {!viewingNote ? <BackButton style={center}></BackButton> : null}
-      {viewingNote ? <NoteViewer note={viewingNote}></NoteViewer> : null}
+      {viewingNote ? <NoteViewer></NoteViewer> : null}
     </div>
   )
 }

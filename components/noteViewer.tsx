@@ -1,9 +1,10 @@
 import { WriteButton } from './writeButton'
 import { BackButton } from './backButton'
 import ReactMarkdown from 'react-markdown'
-import { Note } from '../logic/colllections/note'
+import { DeleteButton } from './deleteButton'
+import { viewingNote } from '../states/viewingNote'
 
-export const NoteViewer = (props: { note: Note }) => (
+export const NoteViewer = () => (
   <div
     style={{
       position: 'absolute',
@@ -11,12 +12,12 @@ export const NoteViewer = (props: { note: Note }) => (
       transform: 'translate(-50%, 0%)',
     }}
   >
-    {props.note ? (
+    {viewingNote ? (
       <div>
         <WriteButton></WriteButton>
-        <button>Delete</button>
+        <DeleteButton></DeleteButton>
         <BackButton></BackButton>
-        <ReactMarkdown source={props.note.text}></ReactMarkdown>
+        <ReactMarkdown source={viewingNote.text}></ReactMarkdown>
       </div>
     ) : null}
   </div>
