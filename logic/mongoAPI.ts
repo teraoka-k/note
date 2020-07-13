@@ -1,46 +1,23 @@
-import { MongoClient } from 'mongodb'
+import { MongoClient, Collection } from 'mongodb'
 
 const URL = 'mongodb://localhost:27017'
 const NAME = 'mongodb'
 
-export async function insertDocument(
-  collectionName: string,
-  document: object
-): Promise<void> {
-  let client: MongoClient
-  try {
-    client = await MongoClient.connect(URL, { useNewUrlParser: true })
-    await client.db(NAME).collection(collectionName).insertOne(document)
-  } finally {
-    client.close()
-  }
+export async function insertDocument(collectionName: string, document: object) {
+  await crudCollection(
+    collectionName,
+    async (collection) => await collection.insertOne(document)
+  )
 }
 
 export async function findDocuments(
   collectionName: string,
   filter: object
 ): Promise<any[]> {
-  let client: MongoClient
-  try {
-    client = await MongoClient.connect(URL, { useNewUrlParser: true })
-    return await client
-      .db(NAME)
-      .collection(collectionName)
-      .find(filter)
-      .toArray()
-  } finally {
-    client.close()
-  }
-}
-
-export async function deleteDocument(collectionName: string, filter: object) {
-  let client: MongoClient
-  try {
-    client = await MongoClient.connect(URL, { useNewUrlParser: true })
-    return await client.db(NAME).collection(collectionName).deleteOne(filter)
-  } finally {
-    client.close()
-  }
+  return await crudCollection(
+    collectionName,
+    async (collection) => await collection.find(filter).toArray()
+  )
 }
 
 export async function updateDocument(
@@ -48,13 +25,32 @@ export async function updateDocument(
   filter: object,
   newDocument: object
 ) {
+  await crudCollection(
+    collectionName,
+    async (collection) =>
+      await collection.updateOne(filter, { $set: newDocument })
+  )
+}
+
+export async function deleteDocument(collectionName: string, filter: object) {
+  await crudCollection(
+    collectionName,
+    async (collection) => await collection.deleteOne(filter)
+  )
+}
+
+/**
+ * @private
+ */
+async function crudCollection(
+  collectionName: string,
+  method: (collection: Collection<any>) => Promise<any>
+) {
   let client: MongoClient
   try {
     client = await MongoClient.connect(URL, { useNewUrlParser: true })
-    return await client
-      .db(NAME)
-      .collection(collectionName)
-      .updateOne(filter, { $set: newDocument })
+    const collection = client.db(NAME).collection(collectionName)
+    return await method(collection)
   } finally {
     client.close()
   }
