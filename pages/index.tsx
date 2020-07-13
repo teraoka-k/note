@@ -1,4 +1,3 @@
-import { center } from '../styles/styles'
 import {
   isHomeMode,
   isWriteMode,
@@ -8,12 +7,14 @@ import {
 import { Reader } from '../components/reader'
 import { Writer } from '../components/writer'
 import { Home } from '../components/home'
+import { useWindowSize } from '../states/windowSize'
 
 export default () => {
   useAppMode()
+  useWindowSize()
 
   return (
-    <div id="app" style={center}>
+    <div id="app">
       {isHomeMode() ? <Home></Home> : null}
       {isWriteMode() ? <Writer></Writer> : null}
       {isReadMode() ? <Reader></Reader> : null}
