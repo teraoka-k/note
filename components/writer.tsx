@@ -1,9 +1,10 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useRef } from 'react'
 import ReactMarkdown from 'react-markdown'
 import { cacheData, getCache } from '../cache/cache'
 import { center } from '../styles/styles'
-import { playCloseSound, playEnterSound } from '../util/sounds'
-import { setHomeMode } from '../states/appMode'
+import { windowHeight, windowWidth } from '../states/windowSize'
+import { BackButton } from './backButton'
+import { SaveButton } from './saveButton'
 
 enum Mode {
   IN,
@@ -12,8 +13,6 @@ enum Mode {
 
 export const Writer = () => {
   // states
-  const [height, setHeight] = useState(0)
-  const [width, setWidth] = useState(0)
   const [src, setSrc] = useState(
     getCache('writing') || '# Markdown Editor\n\nwrite a note here'
   )
@@ -23,21 +22,10 @@ export const Writer = () => {
   const inputElement = useRef(null)
   const outputElement = useRef(null)
 
-  // after mount
-  // - auto resize window
-  useEffect(() => {
-    const adaptWindowSize = () => {
-      setHeight((window.innerHeight * 0.9) / 2.1)
-      setWidth(window.innerWidth * 0.9 - 20)
-    }
-    adaptWindowSize()
-    window.addEventListener('resize', adaptWindowSize)
-  }, [])
-
   return (
     <div>
       <textarea
-        style={{ height: `${height}px`, width: `${width}px` }}
+        style={{ height: `${windowHeight}px`, width: `${windowWidth}px` }}
         onChange={(e) => {
           setSrc(e.target.value)
           cacheData('writing', src)
@@ -48,39 +36,21 @@ export const Writer = () => {
           if (mode == Mode.IN) {
             outputElement.current.scrollTop =
               (e.currentTarget.scrollTop /
-                (e.currentTarget.scrollHeight - height)) *
-              (outputElement.current.scrollHeight - height)
+                (e.currentTarget.scrollHeight - windowHeight)) *
+              (outputElement.current.scrollHeight - windowHeight)
           }
         }}
         ref={inputElement}
         value={src}
       ></textarea>
       <div style={center}>
-        <button
-          onClick={() => {
-            playEnterSound()
-            fetch('/api/note', {
-              method: 'post',
-              body: JSON.stringify({ text: src }),
-            })
-            setHomeMode()
-          }}
-        >
-          Save
-        </button>
-        <button
-          onClick={() => {
-            playCloseSound()
-            setHomeMode()
-          }}
-        >
-          Back
-        </button>
+        <SaveButton src={src}></SaveButton>
+        <BackButton></BackButton>
       </div>
       <div
         style={{
-          height: `${height}px`,
-          width: `${width}px`,
+          height: `${windowHeight}px`,
+          width: `${windowWidth}px`,
           overflow: 'auto',
         }}
         onMouseEnter={() => setMode(Mode.OUT)}
@@ -89,8 +59,8 @@ export const Writer = () => {
           if (mode == Mode.OUT) {
             inputElement.current.scrollTop =
               (e.currentTarget.scrollTop /
-                (e.currentTarget.scrollHeight - height)) *
-              (inputElement.current.scrollHeight - height)
+                (e.currentTarget.scrollHeight - windowHeight)) *
+              (inputElement.current.scrollHeight - windowHeight)
           }
         }}
         ref={outputElement}
