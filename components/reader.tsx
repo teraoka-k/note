@@ -8,10 +8,9 @@ import { NotePreview } from './notePreview'
 import { useNotes, notes } from '../states/notes'
 import { useState } from 'react'
 import { Note } from '../logic/colllections/note'
-import ReactMarkdown from 'react-markdown'
 import { BackButton } from './backButton'
 import { center } from '../styles/styles'
-import { WriteButton } from './writeButton'
+import { NoteViewer } from './noteViewer'
 
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y])
 
@@ -37,22 +36,7 @@ export const Reader = () => {
         ))}
       </Swiper>
       {!viewingNote ? <BackButton style={center}></BackButton> : null}
-      <div
-        style={{
-          position: 'absolute',
-          left: '50%',
-          transform: 'translate(-50%, 0%)',
-        }}
-      >
-        {viewingNote ? (
-          <div>
-            <WriteButton></WriteButton>
-            <button>Delete</button>
-            <BackButton></BackButton>
-            <ReactMarkdown source={viewingNote.text}></ReactMarkdown>
-          </div>
-        ) : null}
-      </div>
+      {viewingNote ? <NoteViewer note={viewingNote}></NoteViewer> : null}
     </div>
   )
 }
