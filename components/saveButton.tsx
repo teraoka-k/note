@@ -1,12 +1,12 @@
-import { playEnterSound } from '../util/sounds'
 import { setHomeMode, isWriteMode, isRewriteMode } from '../states/appMode'
 import { clearCache } from '../cache/cache'
 import { viewingNote } from '../states/viewingNote'
+import { playLowTone } from '../states/soundLibrary'
 
 export const SaveButton = (props: { src: string }) => (
   <button
     onClick={() => {
-      playEnterSound()
+      playLowTone()
 
       if (isWriteMode())
         fetch('/api/note', {

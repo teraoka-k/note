@@ -1,9 +1,9 @@
-import { playCloseSound } from '../util/sounds'
 import { backMode } from '../states/appMode'
+import { playLowTone } from '../states/soundLibrary'
 export const BackButton = () => (
   <button
     onClick={() => {
-      playCloseSound()
+      playLowTone()
       backMode()
     }}
   >

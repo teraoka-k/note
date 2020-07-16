@@ -9,10 +9,12 @@ import { Reader } from '../components/reader'
 import { Writer } from '../components/writer'
 import { Home } from '../components/home'
 import { useWindowSize } from '../states/windowSize'
+import { useSounds } from '../states/soundLibrary'
 
 export default () => {
   useAppMode()
   useWindowSize()
+  useSounds()
 
   return (
     <div id="app">

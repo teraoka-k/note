@@ -1,10 +1,10 @@
-import { playOpenSound } from '../util/sounds'
 import { setWriteMode, setRewriteMode } from '../states/appMode'
+import { playLowTone } from '../states/soundLibrary'
 
 export const WriteButton = (props: { rewrites?: boolean }) => (
   <button
     onClick={() => {
-      playOpenSound()
+      playLowTone()
       if (props.rewrites) setRewriteMode()
       else setWriteMode()
     }}
