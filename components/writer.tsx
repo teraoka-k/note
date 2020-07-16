@@ -1,11 +1,17 @@
 import { useState, useRef } from 'react'
 import ReactMarkdown from 'react-markdown'
 import { cacheData, getCache } from '../cache/cache'
-import { splitVertical, middle } from '../styles/styles'
+import {
+  splitVertical,
+  buttons,
+  splitHorizontal,
+  leftPane,
+  rightPane,
+} from '../styles/styles'
 import { windowHeight } from '../states/windowSize'
 import { BackButton } from './backButton'
 import { SaveButton } from './saveButton'
-import { isWriteMode, isRewriteMode } from '../states/appMode'
+import { isWriteMode } from '../states/appMode'
 import { viewingNote } from '../states/viewingNote'
 
 enum Mode {
@@ -28,8 +34,12 @@ export const Writer = () => {
 
   return (
     <div>
+      <div style={buttons}>
+        <SaveButton src={src}></SaveButton>
+        <BackButton></BackButton>
+      </div>
       <textarea
-        style={Object.assign({ margin: '1% 2%' }, splitVertical(0, 40))}
+        style={leftPane}
         onChange={(e) => {
           setSrc(e.target.value)
           cacheData('writing', src)
@@ -47,15 +57,8 @@ export const Writer = () => {
         ref={inputElement}
         value={src}
       ></textarea>
-      <div style={middle}>
-        <SaveButton src={src}></SaveButton>
-        <BackButton></BackButton>
-      </div>
       <div
-        style={Object.assign(
-          { overflow: 'auto', margin: '1% 2%' },
-          splitVertical(50, 100)
-        )}
+        style={rightPane}
         onMouseEnter={() => setMode(Mode.OUT)}
         onTouchStart={() => setMode(Mode.OUT)}
         onScroll={(e) => {

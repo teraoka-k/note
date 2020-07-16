@@ -1,13 +1,13 @@
-import { setWriteMode } from '../states/appMode'
+import { setRewriteMode } from '../states/appMode'
 import { playLowTone } from '../states/soundLibrary'
 
-export const WriteButton = () => (
+export const RewriteButton = () => (
   <button
     onClick={() => {
       playLowTone()
-      setWriteMode()
+      setRewriteMode()
     }}
   >
-    Write
+    Rewrite
   </button>
 )

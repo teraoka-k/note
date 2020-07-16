@@ -1,4 +1,4 @@
-import { setHomeMode, isWriteMode, isRewriteMode } from '../states/appMode'
+import { isWriteMode, isRewriteMode, setReadMode } from '../states/appMode'
 import { clearCache } from '../cache/cache'
 import { viewingNote } from '../states/viewingNote'
 import { playLowTone } from '../states/soundLibrary'
@@ -19,7 +19,7 @@ export const SaveButton = (props: { src: string }) => (
           body: JSON.stringify({ text: props.src, id: viewingNote._id }),
         })
 
-      setHomeMode()
+      setReadMode()
       clearCache('writing')
     }}
   >

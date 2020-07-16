@@ -45,3 +45,55 @@ export const middle = Object.assign(
   splitVertical(46, 50),
   splitHorizontal(45, 55)
 )
+
+export const buttons = Object.assign(
+  {
+    marginTop: '3%',
+  } as CSSProperties,
+  horizontallyCenter
+)
+
+export const previewer = Object.assign(
+  {
+    marginTop: '3%',
+  } as CSSProperties,
+  horizontallyCenter
+)
+
+export const viewer = Object.assign(
+  {
+    marginTop: '3%',
+  } as CSSProperties,
+  horizontallyCenter
+)
+
+export const editor = Object.assign(
+  {
+    width: '90%',
+    height: '45%',
+    overflow: 'auto',
+  } as CSSProperties,
+  horizontallyCenter
+)
+
+const sidePane = {
+  margin: '1% 2%',
+  top: `5%`,
+  height: `90%`,
+  width: '45%',
+  position: 'fixed',
+}
+export const leftPane = Object.assign(
+  {
+    left: 0,
+  } as CSSProperties,
+  sidePane
+)
+
+export const rightPane = Object.assign(
+  {
+    right: 0,
+    overflow: 'auto',
+  } as CSSProperties,
+  sidePane
+)
