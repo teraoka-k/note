@@ -7,8 +7,8 @@
     "dev": "NODE_OPTIONS='--inspect' next dev",
     "build": "next build",
     "start": "next start",
-    "db": "docker run --name mongodb -p 27017:27017 -v `pwd`/db:/data/db -d mongo",
-    "db:kill": "docker rm -f mongodb"
+    "db": "docker-compose up",
+    "db:kill": "docker-compose down"
   },
   "author": "",
   "license": "ISC",
