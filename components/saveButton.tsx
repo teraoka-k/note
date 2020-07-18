@@ -2,27 +2,16 @@ import { isWriteMode, isRewriteMode, setReadMode } from '../states/appMode'
 import { clearCache } from '../cache/cache'
 import { viewingNote } from '../states/viewingNote'
 import { playLowTone } from '../states/soundLibrary'
+import { addNote, modifyNote } from '../states/notes'
 
 export const SaveButton = (props: { src: string }) => (
-  <button
-    onClick={() => {
-      playLowTone()
-
-      if (isWriteMode())
-        fetch('/api/note', {
-          method: 'post',
-          body: JSON.stringify({ text: props.src }),
-        })
-      else if (isRewriteMode())
-        fetch('/api/note', {
-          method: 'put',
-          body: JSON.stringify({ text: props.src, id: viewingNote._id }),
-        })
-
-      setReadMode()
-      clearCache('writing')
-    }}
-  >
-    Save
-  </button>
+  <button onClick={() => saveNote(props.src)}>Save</button>
 )
+
+export function saveNote(src: string) {
+  playLowTone()
+  if (isWriteMode()) addNote(src)
+  else if (isRewriteMode()) modifyNote(src, viewingNote._id)
+  setReadMode()
+  clearCache('writing')
+}

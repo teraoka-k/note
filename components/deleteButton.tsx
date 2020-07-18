@@ -1,15 +1,13 @@
 import { setViewingNote, viewingNote } from '../states/viewingNote'
 import { playLowTone } from '../states/soundLibrary'
+import { deleteNote } from '../states/notes'
 
 export const DeleteButton = () => {
   return (
     <button
       onClick={() => {
         playLowTone()
-        fetch(`api/note`, {
-          method: 'DELETE',
-          body: JSON.stringify(viewingNote._id),
-        })
+        deleteNote(viewingNote)
         setViewingNote(null)
       }}
     >
