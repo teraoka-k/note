@@ -8,6 +8,6 @@ export const RewriteButton = () => (
       setRewriteMode()
     }}
   >
-    Rewrite
+    Modify
   </button>
 )

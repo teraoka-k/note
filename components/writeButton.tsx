@@ -8,6 +8,6 @@ export const WriteButton = () => (
       setWriteMode()
     }}
   >
-    Write
+    Add
   </button>
 )
