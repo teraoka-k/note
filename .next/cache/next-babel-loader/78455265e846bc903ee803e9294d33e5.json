@@ -1,0 +1,1 @@
+{"ast":null,"code":"import React from \"react\";\nvar __jsx = React.createElement;\nimport { setWriteMode } from '../states/appMode';\nexport var WriteButton = function WriteButton() {\n  return __jsx(\"button\", {\n    onClick: setWriteMode\n  }, \"Add\");\n};","map":null,"metadata":{},"sourceType":"module"}

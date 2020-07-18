@@ -1,0 +1,1 @@
+{"ast":null,"code":"import React from \"react\";\nvar __jsx = React.createElement;\nimport { setWriteMode } from '../states/appMode';\nimport { playLowTone } from '../states/soundLibrary';\nexport const WriteButton = () => __jsx(\"button\", {\n  onClick: () => {\n    playLowTone();\n    setWriteMode();\n  }\n}, \"Write\");","map":null,"metadata":{},"sourceType":"module"}

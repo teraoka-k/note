@@ -1,0 +1,1 @@
+{"ast":null,"code":"import { useState } from 'react';\nexport let viewingNote;\nexport let setViewingNote;\nexport function useViewingNote() {\n  ;\n  [viewingNote, setViewingNote] = useState(null);\n}","map":null,"metadata":{},"sourceType":"module"}

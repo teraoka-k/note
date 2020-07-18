@@ -1,0 +1,1 @@
+{"ast":null,"code":"export var cache = {};\nexport function cacheData(key, value) {\n  cache[key] = value;\n}\nexport function getCache(key) {\n  return cache[key];\n}\nexport function clearCache(key) {\n  delete cache[key];\n}","map":null,"metadata":{},"sourceType":"module"}

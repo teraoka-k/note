@@ -1,0 +1,1 @@
+{"ast":null,"code":"import React from \"react\";\nvar __jsx = React.createElement;\nexport const NotePreview = props => __jsx(\"div\", null, props.note.text.match(/^(.*)$/m)[1]);","map":null,"metadata":{},"sourceType":"module"}
