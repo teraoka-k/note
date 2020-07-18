@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next'
-import { Note } from '../../logic/colllections/note'
+import { Note } from '../../model/note'
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   switch (req.method) {

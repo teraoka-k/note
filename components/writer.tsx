@@ -1,16 +1,10 @@
 import { useState, useRef } from 'react'
 import ReactMarkdown from 'react-markdown'
 import { cacheData, getCache } from '../cache/cache'
-import {
-  splitVertical,
-  buttons,
-  splitHorizontal,
-  leftPane,
-  rightPane,
-} from '../styles/styles'
+import { buttons, leftPane, rightPane } from '../styles/styles'
 import { windowHeight } from '../states/windowSize'
 import { BackButton } from './backButton'
-import { SaveButton } from './saveButton'
+import { SaveButton, saveNote } from './saveButton'
 import { isWriteMode } from '../states/appMode'
 import { viewingNote } from '../states/viewingNote'
 
@@ -22,9 +16,7 @@ enum Mode {
 export const Writer = () => {
   // states
   const [src, setSrc] = useState(
-    isWriteMode()
-      ? getCache('writing') || '# Markdown Editor\n\nwrite a note here'
-      : viewingNote.text
+    isWriteMode() ? getCache('writing') || '' : viewingNote.text
   )
   const [mode, setMode] = useState(Mode.IN)
 
@@ -40,6 +32,8 @@ export const Writer = () => {
       </div>
       <textarea
         style={leftPane}
+        autoFocus
+        placeholder="# Write Markdown here"
         onChange={(e) => {
           setSrc(e.target.value)
           cacheData('writing', src)
@@ -53,6 +47,9 @@ export const Writer = () => {
                 (e.currentTarget.scrollHeight - windowHeight)) *
               (outputElement.current.scrollHeight - windowHeight)
           }
+        }}
+        onKeyDown={(e) => {
+          if (e.ctrlKey && e.key == 'Enter') saveNote(src)
         }}
         ref={inputElement}
         value={src}

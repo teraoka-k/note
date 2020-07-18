@@ -1,7 +1,6 @@
 import { isWriteMode, isRewriteMode, setReadMode } from '../states/appMode'
 import { clearCache } from '../cache/cache'
 import { viewingNote } from '../states/viewingNote'
-import { playLowTone } from '../states/soundLibrary'
 import { addNote, modifyNote } from '../states/notes'
 
 export const SaveButton = (props: { src: string }) => (
@@ -9,7 +8,6 @@ export const SaveButton = (props: { src: string }) => (
 )
 
 export function saveNote(src: string) {
-  playLowTone()
   if (isWriteMode()) addNote(src)
   else if (isRewriteMode()) modifyNote(src, viewingNote._id)
   setReadMode()

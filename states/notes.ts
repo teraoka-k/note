@@ -1,6 +1,6 @@
 import { Dispatch, useState, useEffect, SetStateAction } from 'react'
-import { Note } from '../logic/colllections/note'
 import { executeAsync } from '../logic/async'
+import { Note } from '../model/note'
 
 export let notes: Note[]
 export let setNotes: Dispatch<SetStateAction<Note[]>>

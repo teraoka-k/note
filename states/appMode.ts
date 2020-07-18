@@ -1,5 +1,5 @@
 import { useState, Dispatch, SetStateAction } from 'react'
-import { read } from 'fs'
+import { playLowTone, usesSound } from './soundLibrary'
 
 enum AppMode {
   write,
@@ -37,6 +37,7 @@ export function setRewriteMode(): void {
  * @private
  */
 function cahngeMode(newMode: AppMode): void {
+  if (usesSound) playLowTone()
   histories.push(mode)
   setMode(newMode)
 }

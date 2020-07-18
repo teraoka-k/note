@@ -1,4 +1,4 @@
-import { Note } from '../logic/colllections/note'
+import { Note } from '../model/note'
 
 interface Props {
   note: Note

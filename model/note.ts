@@ -1,10 +1,10 @@
+import { ObjectID } from 'mongodb'
 import {
-  findDocuments,
   insertDocument,
+  findDocuments,
   deleteDocument,
   updateDocument,
-} from '../mongoAPI'
-import { ObjectID } from 'mongodb'
+} from '../logic/mongoAPI'
 
 const collectionName = 'note'
 

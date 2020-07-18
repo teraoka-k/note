@@ -2,10 +2,12 @@ import { useState, Dispatch, SetStateAction, useEffect } from 'react'
 
 const SOUND_FILE_NAMES = ['lowtone', 'hightone', 'highloudtone']
 
+export let usesSound = false
 let soundLibrary: SoundLibrary
 let setSoundLibrary: Dispatch<SetStateAction<SoundLibrary>>
 
 export function useSounds(): void {
+  usesSound = true
   ;[soundLibrary, setSoundLibrary] = useState({})
   loadSoundLibrary()
 }
