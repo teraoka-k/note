@@ -1,6 +1,6 @@
 import { MongoClient, Collection } from 'mongodb'
 
-const URL = 'mongodb://localhost:27017'
+const URL = 'mongodb://db:27017'
 const NAME = 'mongodb'
 
 export async function insertDocument(collectionName: string, document: object) {

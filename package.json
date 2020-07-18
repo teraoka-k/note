@@ -4,11 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "npm run db && NODE_OPTIONS='--inspect' next dev",
-    "build": "next build",
-    "start": "next start",
-    "db": "docker-compose up -d",
-    "db:kill": "docker-compose down"
+    "dev": "docker-compose up",
+    "dev:stop": "docker-compose down",
+    "dev:calledFromDockerCompose": "NODE_OPTIONS='--inspect' npx next dev",
+    "production": "docker-compose -f docker-compose-production.yml up -d",
+    "production:stop": "docker-compose -f docker-compose-production.yml down"
   },
   "author": "",
   "license": "ISC",
